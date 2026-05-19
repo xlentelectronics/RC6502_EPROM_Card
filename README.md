@@ -1,33 +1,1 @@
-﻿# RC6502 MC6821 PIA IO Card
-
-To provide I/O capabilities with the RC6502, an I/O card with the MC6821 PIA has been developed. To connect the card to the RC6502, simply insert it into the backplane. You can place the card in the desired address range using jumper J4. The included software samples use the base address $C000. The hardware and software have been developed under an open license.
-
-![Build MC6821 PIA IO Card](/RC6502_MC6821_PIA_Schematic/MC6821_PIA_IO_Card_TOP.jpg)
-![Build MC6821 PIA IO Card](/RC6502_MC6821_PIA_Schematic/MC6821_PIA_IO_Card.jpg)
-
-
-# Software Examples
-In the Software Example folder are some examples how to use the MC6821 PIA IO Card. The examples are created for Krusader v1.3 and for MBASIC.
-
-## Krusader assembler Example
-In the Krusader Assembler folder the example MC6821_PingPong_Light_Speedmeter_Color.asm can be found.  This is a fully compatible Krusader v1.3 program. The program lets 8 LEDS running in a pingpong way. The speed can be controlled via the + and - of the numeric keypad of the keyboard.
-
-The following hardware connection must be made to PORTA and PORTB. PORTA is connected to 8 LEDs. The anode of the LEDs is connected with a 1 kΩ resistor between Vcc and the corresponding pins PA0 through PA7. The .asm file can be loaded directly into Krusader v1.3. Make sure you have opened Krusader in edit mode (000) before loading the .asm file. If you use TeraTerm, you load the .asm via _Send file ..._ After successful load, assembler the file and run it via R $0300 (I assume you know how Krusader v1.3 works)
-
-There is also as example the MC6821_PingPong_Light_Speedmeter_Color.woz. This file is the WoZ monitor compatible file. You can load the .woz file from the Woz Monitor in the same way by using _Send file ..._  
-
-![PINGPONG Running Light](/Software_Example/Krusader_Assembler/MC6821_PIA_PINGPONG_Speedmeter_Color_0.jpg "Speedmeter at start")
-![Speedmeter Green](/Software_Example/Krusader_Assembler/MC6821_PIA_PINGPONG_Speedmeter_Color_1.jpg "Speedmeter Green")
-![Speedmeter Yellow](/Software_Example/Krusader_Assembler/MC6821_PIA_PINGPONG_Speedmeter_Color_2.jpg "Speedmeter Green-Yellow")
-![Speedmeter Red](/Software_Example/Krusader_Assembler/MC6821_PIA_PINGPONG_Speedmeter_Color_3.jpg "Speedmeter Green-Yellow-Red") 
-
-
-## MBASIC Examples
-In the MBASIC folder there are 2 MBASIC examples, MBasic_MC6821_PIA_IO_RunningLight_PortA.bas and MBasic_MC6821_PIA_IO_RunningLight_Speed.bas.
-
-Both MBASIC examples uses the same LED hardware connections as mentioned for the PINGPONG Running Light. An additional piece of hardware is required for the MBasic_MC6821_PIA_IO_RunningLight_Speed.bas.
-Connect a push button via 10K resistor to Vcc and the other lead of the push button to GND. Connect PORTB PB7 to the 10K resistor. When you push the button, PB7 will go low.
-
-Start MBASIC and load the .bas file via _Send file ..._ and type RUN to execute the program.
-
-![MBASIC ](/Software_Example/MBASIC/MBASIC_MC6821_RL_Speed.jpg) 
+﻿#﻿﻿﻿ RC6502 EPROM CardThe RC6502 EPROM Card is a dedicated ROM add-on card designed to provide stable, non‑volatile program storage for the RC6502 Apple 1 Replica SBC. The RC6502 EPROM Card supports multiple 32KB devices, including the AT28C256, W27C256, W27E257, and the classic 27C256 UV‑EPROM. On the bottom side of the PCB, a set of solder jumpers determines which EPROM is installed. These jumpers configure the card for either an AT28C256 or a x27x256 EPROM Select the correct jumper option to ensure proper working of the EPROM Card![Build MC6821 PIA IO Card](/RC6502_MC6821_PIA_Schematic/MC6821_PIA_IO_Card_TOP.jpg)# EPROM Card AddressThe EPROM card maps the EPROM cleanly into the upper memory region of the RC6502 address space, starting at base address $8000.  At the hardware level, the EPROM Card integrates seamlessly with the RC6502 backplane. Address decoding ensures that ROM is only active in the intended memory range, preventing bus conflicts with RAM or I/O devices. The board exposes a standard 28‑pin EPROM socket, allowing easy reprogramming and swapping of firmware during development. Because the card outputs stable, fast ROM reads, it is ideal for system monitors, bootloaders, BASIC interpreters, and custom firmware.## Bank SelectThe RC6502 EPROM Card divides the installed 32 KB EPROM into two independent 16 KB banks. The Bank Select switch determines which half of the EPROM is mapped into the CPU’s address space.When the switch is set to Bank 0, the EPROM exposes the first 16 KB block. When flipped to Bank 1, the card instead maps the second 16 KB block. Only one bank is active at a time, ensuring clean and conflict‑free memory decoding.This design allows you to store two separate firmware images inside a single EPROM, such as EhBASIC in Bank 0 and some other program in Bank 1. Switching between them requires no reprogramming: simply toggle the bank‑select switch and reset the system.# EhBASIC## WOZMON Command## CLS Command![MBASIC ](/Software_Example/MBASIC/MBASIC_MC6821_RL_Speed.jpg) 
