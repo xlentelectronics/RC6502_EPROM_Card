@@ -4,7 +4,7 @@ The RC6502 EPROM Card is a dedicated ROM add-on card designed to provide stable,
 
 The RC6502 EPROM Card supports multiple 32KB devices, including the AT28C256, W27C256, W27E257, and the classic 27C256 UV‑EPROM. On the bottom side of the PCB, a set of solder jumpers determines which EPROM is installed. These jumpers configure the card for either an AT28C256 or a x27x256 EPROM Select the correct jumper option to ensure proper working of the EPROM Card
 
-![Build MC6821 PIA IO Card](/RC6502_MC6821_PIA_Schematic/MC6821_PIA_IO_Card_TOP.jpg)
+![RC6502 EPROM Card](/Pictures/RC6502_EPROM_Card.jpg)
 
 # EPROM Card Address
 The EPROM card maps the EPROM cleanly into the upper memory region of the RC6502 address space, starting at base address $8000.  
